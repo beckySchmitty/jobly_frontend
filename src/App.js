@@ -1,11 +1,56 @@
 import './App.css';
+import jwt from "jsonwebtoken";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes/Routes";
+import JoblyApi from "./api";
+import UserContext from "./auth/UserContext";
+
 
 
 function App() {
+
+  const [userInfo, setUserInfo] = useState(false);
+
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage("token");
+
+
+  // LOAD USER INFO - side effect
+  // Runs with token change
+  // "Loading" shown while making API call
+  // related to userInfo state
+
+  useEffect(function loadUserFromAPI() {
+
+  // *********
+    async function getCurrentUser() {
+      if (token) {
+        try {
+          // grab username
+          let { username } = jwt.decode(token);
+          // save token to Api class so it can be used in API call
+          JoblyApi.token = token;
+          let currentUser = await JoblyApi.getCurrentUser(username);
+
+          // Update currentUser state
+          setCurrentUser(currentUser);
+
+        } catch (error) {
+          console.error("loadUserFromAPI Error (App)", error);
+          setCurrentUser(null);
+        }
+      }
+      // udpate userInfo state if sucessful
+      setUserInfo(true);
+    }
+  // *********
+
+    // setting to false while making API call
+    setInfoLoaded(false);
+
+    getCurrentUser();
+  }, [token]);
+
 
     // Handles site-wide signup
     // logs in user and sets token
@@ -33,6 +78,8 @@ function App() {
         return { success: false, errors };
       }
     }
+
+    if (!userInfo) return "LOADING..."
   
   return (
     <div className="App">
