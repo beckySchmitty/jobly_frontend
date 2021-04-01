@@ -7,10 +7,12 @@ import CompanyDetail from "../Companies/CompanyDetail";
 import LoginForm from "../auth/LoginForm";
 import ProfileForm from "../auth/ProfileForm";
 import SignupForm from "../auth/SignupForm";
+import UserContext from "./auth/UserContext";
+
 
 // Site Wide Frontend Routes
 
-const Routes = () => {
+const Routes = ({login, signup}) => {
 
   return (
       <div className="pt-5">
@@ -20,11 +22,11 @@ const Routes = () => {
           </Route>
 
           <Route exact path="/login">
-            <LoginForm />
+            <LoginForm login={login} />
           </Route>
 
           <Route exact path="/signup">
-            <SignupForm />
+            <SignupForm signup={signup} />
           </Route>
 
           <Route exact path="/companies">
