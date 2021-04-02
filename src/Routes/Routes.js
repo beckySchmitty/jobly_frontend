@@ -8,6 +8,8 @@ import LoginForm from "../auth/LoginForm";
 import ProfileForm from "../auth/ProfileForm";
 import SignupForm from "../auth/SignupForm";
 
+import LoginRequiredRoute from "./LoginRequiredRoute"
+
 
 // Site Wide Frontend Routes
 
@@ -28,21 +30,21 @@ const Routes = ({login, signup}) => {
             <SignupForm signup={signup} />
           </Route>
 
-          <Route exact path="/companies">
+          <LoginRequiredRoute exact path="/companies">
             <CompanyList />
-          </Route>
+          </LoginRequiredRoute>
 
-          <Route exact path="/jobs">
+          <LoginRequiredRoute exact path="/jobs">
             <JobList />
-          </Route>
+          </LoginRequiredRoute>
 
-          <Route exact path="/companies/:handle">
+          <LoginRequiredRoute exact path="/companies/:handle">
             <CompanyDetail />
-          </Route>
+          </LoginRequiredRoute>
 
-          <Route path="/profile">
+          <LoginRequiredRoute path="/profile">
             <ProfileForm />
-          </Route>
+          </LoginRequiredRoute>
 
           <Redirect to="/" />
         </Switch>
