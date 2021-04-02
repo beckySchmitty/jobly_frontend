@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import UserContext from "../auth/UserContext";
 import { Link } from "react-router-dom";
-import "./Homepage.css";
+import "./Home.css";
 
 // Home page of site
 // Welcomes back user or shows signup/login forms

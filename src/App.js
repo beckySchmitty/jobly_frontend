@@ -1,10 +1,11 @@
-import './App.css';
+import React, { useState, useEffect } from "react";
+
 import jwt from "jsonwebtoken";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes/Routes";
 import JoblyApi from "./api";
 import UserContext from "./auth/UserContext";
-
+import useLocalStorage from "./Common/useLocalStorageHook";
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
   // *********
 
     // setting to false while making API call
-    setInfoLoaded(false);
+    setUserInfo(false);
 
     getCurrentUser();
   }, [token]);

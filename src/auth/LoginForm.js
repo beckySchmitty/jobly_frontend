@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import AlertMessage from "../common/AlertMessage";
+import AlertMessage from "../Common/AlertMessage";
 
 // Login Form
 // manages update to state on change

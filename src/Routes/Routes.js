@@ -7,7 +7,6 @@ import CompanyDetail from "../Companies/CompanyDetail";
 import LoginForm from "../auth/LoginForm";
 import ProfileForm from "../auth/ProfileForm";
 import SignupForm from "../auth/SignupForm";
-import UserContext from "./auth/UserContext";
 
 
 // Site Wide Frontend Routes
